@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FirstSteps
 {
-    public class Hero : BaseFighter
+    public class Hero: BaseFighter
     {
         private string _fighterName;
         public Hero(string fighterName)
@@ -13,6 +13,26 @@ namespace FirstSteps
             Defense = 5;
             Level = 1;
             _fighterName = fighterName;
+        }
+
+        public override int ProduceHit()
+        {
+            double hitModifier = 1;
+            var diceResult = GetRandomNumber(1, 6) + GetRandomNumber(1, 6);
+            if (diceResult > 10)
+            {
+                hitModifier = 2;
+            }
+            else if (diceResult > 8)
+            {
+                hitModifier = 1.5;
+            }
+            else if (diceResult < 5)
+            {
+                hitModifier = 0.5;
+            }
+
+            return (int)(hitModifier * base.ProduceHit());
         }
 
         public override string FighterType
@@ -36,14 +56,14 @@ namespace FirstSteps
 
             do
             {
-                enemyFighter.ReceiveHit(Attack);
+                enemyFighter.ReceiveHit(ProduceHit());
 
                 if (enemyFighter.IsAlive)
                 {
                     int enemyStrikeForse = enemyFighter.ProduceHit() - Defense;
 
                     if (enemyStrikeForse > 0)
-                    { 
+                    {
                         ReduceBlood(enemyStrikeForse);
                     }
                 }
@@ -100,7 +120,7 @@ namespace FirstSteps
                 Booster booster = new Booster(boosterType, boosterLevel);
                 AvailableBoosters.Add(booster);
             }
-        } 
+        }
 
         public override void DisplayObject()
         {

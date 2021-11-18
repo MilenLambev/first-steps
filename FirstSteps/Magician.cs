@@ -4,8 +4,6 @@ namespace FirstSteps
 {
     public abstract class Magician : BaseFighter
     {
-        private Random _random = new Random();
-
         public int MagicEnergy { get; protected set; } = 0;
         
         protected bool CanApplyMagicEnergy()
@@ -21,11 +19,6 @@ namespace FirstSteps
             MagicEnergy = MagicEnergy / 2;
 
             return result;
-        }
-
-        protected int GetRandomNumber(int min, int max)
-        {
-            return _random.Next(min, max);
         }
 
         public override void DisplayObject()

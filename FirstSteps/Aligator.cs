@@ -7,6 +7,7 @@
             Blood = 40;
             Attack = 31;
             Defense = 0;
+            AttackType = AttackType.None;
         }
 
         public override string FighterType

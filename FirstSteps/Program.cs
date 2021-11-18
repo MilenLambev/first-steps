@@ -48,9 +48,9 @@ namespace FirstSteps
                 
                 if (hero.IsAlive)
                 {
-                    Console.Clear();
                     Console.WriteLine("You Won!! Press any key to continue");
                     Console.ReadKey();
+                    Console.Clear();
                 }
             }
             while (hero.IsAlive);
